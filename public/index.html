@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080d18"><meta name="description" content="SaitamaAPI PRO: gestiona claves, prueba endpoints y revisa el consumo de tu API.">
+  <title>SaitamaAPI PRO — Control Center</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#dashboard"><span class="brand-mark">S</span><span><b>SaitamaAPI</b><small>PRO CONTROL CENTER</small></span></a>
+    <div class="nav-label">WORKSPACE</div>
+    <nav class="nav">
+      <a class="nav-link active" href="#dashboard"><span>◈</span> Resumen</a>
+      <a class="nav-link" href="#keys"><span>⌘</span> API Keys</a>
+      <a class="nav-link" href="#tester"><span>▷</span> Probador de APIs</a>
+      <a class="nav-link" href="#docs"><span>▤</span> Documentación</a>
+      <a class="nav-link" href="#usage"><span>◷</span> Uso de API</a>
+      <a class="nav-link" href="#profile"><span>◎</span> Perfil e información <b class="nav-arrow">›</b></a>
+      <a class="nav-link" id="adminLink" hidden href="#admin"><span>♙</span> Administración</a>
+    </nav>
+    <div class="sidebar-bottom"><span class="online-dot"></span> Sistema preparado <small>SAI · 2026</small></div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><button id="menu" class="icon-button" aria-label="Abrir menú">☰</button><div class="page-heading"><small>SAITAMA ECOSYSTEM / DEVELOPER</small><h1>Tu centro de control</h1></div><button type="button" id="userbox" class="user-chip" aria-label="Abrir perfil"><span class="avatar">S</span><span><b>Sesión no iniciada</b><small>Conecta tu cuenta</small></span><span class="user-arrow">↗</span></button></header>
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+
+    <section id="welcome" class="hero welcome">
+      <div class="hero-copy"><span class="pill">✦ DEVELOPER WORKSPACE</span><h2>Tus APIs.<br><span>Tu ritmo.</span></h2><p>Una consola para administrar tu API key, probar tus endpoints y revisar tus solicitudes en un solo lugar.</p><a class="button primary" href="/auth/google">Continuar con Google <span>↗</span></a><p class="fineprint">Inicio de sesión seguro · Clave personal por cuenta</p></div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="core">SAI<span>API</span></div><i class="spark spark-a">✦</i><i class="spark spark-b">✧</i></div>
+    </section>
+
+    <div id="appcontent" hidden>
+      <section id="dashboard" class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>Solicitudes de hoy</span><span class="stat-icon">↗</span></div><strong id="today">0</strong><div class="progress-track"><span id="usageBar"></span></div><small id="limitLabel">de 450 solicitudes diarias</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Errores de hoy</span><span class="stat-icon amber">!</span></div><strong id="errors">0</strong><small>Respuestas con error</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Tipo de cuenta</span><span class="stat-icon violet">◇</span></div><strong id="role">NORMAL</strong><small id="roleSub">Límite diario activo</small></article>
+      </section>
+
+      <section id="keys" class="panel key-panel"><div class="panel-heading"><div><span class="eyebrow">ACCOUNT SECURITY</span><h2>Tu API Key</h2><p>Tu clave se utiliza automáticamente en el probador cuando inicias sesión. No la compartas.</p></div><span class="status-pill"><i></i> Cuenta conectada</span></div><div class="key-box"><div class="key-symbol">⌘</div><code id="keydisplay">Preparando clave...</code><button id="copykey" class="button secondary">Copiar clave</button></div><div class="button-row"><button id="newkey" class="button primary">Generar / regenerar clave</button><button id="logout" class="button ghost">Cerrar sesión</button></div><p class="hint">Por seguridad, la clave completa solo se muestra cuando se crea. Guárdala en un lugar privado.</p></section>
+
+      <section id="tester" class="panel tester-panel"><div class="panel-heading"><div><span class="eyebrow">LIVE REQUEST LAB</span><h2>Probador de todas las APIs</h2><p>Selecciona un endpoint, completa el parámetro y ejecuta la solicitud desde el dashboard.</p></div><span class="method-badge">SESSION AUTH</span></div>
+        <div class="tester-grid"><div class="form-field"><label for="endpointSelect">Endpoint</label><select id="endpointSelect"><option value="/api/ping">GET /api/ping — Estado</option><option value="/api/info">GET /api/info — Información</option><option value="/api/ytsearch">GET /api/ytsearch — YouTube Search</option><option value="/api/play/audio">GET /api/play/audio — Audio</option><option value="/api/play/video">GET /api/play/video — Video</option><option value="/api/facebook">GET /api/facebook — Facebook</option><option value="/api/tiktok">GET /api/tiktok — TikTok</option><option value="/api/instagram">GET /api/instagram — Instagram</option><option value="/api/spotify">GET /api/spotify — Spotify</option></select></div><div class="form-field"><label id="valueLabel" for="testValue">Parámetro (opcional)</label><input id="testValue" autocomplete="off" placeholder="Elige un endpoint arriba"></div><div class="form-field" id="limitField"><label for="testLimit">Límite de resultados (opcional)</label><input id="testLimit" type="number" min="1" max="20" value="5" placeholder="5"></div></div>
+        <div class="tester-footer"><span class="secure-note"><i></i> La sesión valida tu cuenta y usa tu clave activa automáticamente.</span><button id="runTest" class="button primary">▶ Ejecutar prueba</button></div>
+        <div class="response-head"><span>RESPUESTA JSON</span><span id="responseStatus" class="response-status">Esperando solicitud</span></div><pre id="testResult" class="response-box">{
+  "message": "Selecciona un endpoint y pulsa Ejecutar prueba.",
+  "creator": "SAI",
+  "year": 2026
+}</pre>
+      </section>
+
+      <section id="docs" class="panel"><div class="panel-heading"><div><span class="eyebrow">API CATALOG</span><h2>Documentación de endpoints</h2><p>Usa la clave con el encabezado <code>x-api-key</code> al llamar desde aplicaciones externas.</p></div></div><div id="endpointList" class="endpoint-list"></div><p class="hint">Los endpoints multimedia requieren sus variables de proveedor configuradas en el servidor. El probador indicará si alguno no está configurado.</p></section>
+
+      <section id="usage" class="panel"><div class="panel-heading"><div><span class="eyebrow">ACTIVITY LOG</span><h2>Actividad reciente</h2><p>Últimas solicitudes registradas para tu cuenta.</p></div></div><div id="recent" class="recent-list"><p class="empty-state">Todavía no hay actividad.</p></div></section>
+
+      <section id="admin" class="panel" hidden><div class="panel-heading"><div><span class="eyebrow">ADMINISTRATION</span><h2>Usuarios</h2><p>Vista exclusiva para administradores.</p></div><button id="refreshUsers" class="button secondary">Actualizar</button></div><div id="users" class="recent-list">Pulsa Actualizar para cargar los usuarios.</div></section>
+      <section id="profile" class="panel profile-panel">
+        <div class="profile-header"><a class="back-link" href="#dashboard">← Volver al resumen</a><span class="eyebrow">ACCOUNT CENTER · GOOGLE</span><h2>Perfil e información</h2><p>Tu cuenta, estado de autenticación y configuración de SaitamaAPI MX PLUS.</p></div>
+        <div class="profile-grid">
+          <article class="profile-card panel-inner"><div class="profile-banner"><span>SAI</span><i>✦</i></div><div class="profile-user"><img id="profileAvatar" src="" alt="Foto de perfil"><div><h3 id="profileName">Usuario</h3><p id="profileEmail">—</p><span id="profileRole" class="profile-badge">USUARIO</span></div></div><div class="profile-facts"><div><small>Inicio de sesión</small><strong>Google OAuth</strong></div><div><small>Plan</small><strong id="profilePlan">MX PLUS</strong></div><div><small>Miembro desde</small><strong id="profileSince">—</strong></div></div><div class="profile-actions"><a class="button secondary" href="#dashboard">← Regresar al dashboard</a><button id="profileLogout" class="button danger" type="button">Cerrar sesión ↗</button></div></article>
+          <article class="profile-card panel-inner info-card"><span class="eyebrow">SERVICE INFORMATION</span><h3>Información del servicio</h3><div class="info-line"><span>Plataforma</span><strong>SaitamaAPI MX PLUS</strong></div><div class="info-line"><span>Versión</span><strong>PRO · 2.0</strong></div><div class="info-line"><span>Desarrollador</span><strong>SAI</strong></div><div class="info-line"><span>Año</span><strong>2026</strong></div><div class="info-line"><span>Autenticación</span><strong>Solo Google</strong></div><div class="info-line"><span>Límite diario</span><strong id="profileLimit">450 solicitudes</strong></div><div class="info-line"><span>Estado</span><strong class="good-state">● Sistema preparado</strong></div><p class="profile-security">◈ Tu clave API es privada. No compartas capturas donde se vea completa.</p></article>
+        </div>
+      </section>
+    </div>
+    <footer><span>SAITAMAAPI PRO</span><span>BUILT FOR DEVELOPERS · 2026</span></footer>
+  </main>
+</div>
+<script src="/app.js" defer></script>
+</body></html>
